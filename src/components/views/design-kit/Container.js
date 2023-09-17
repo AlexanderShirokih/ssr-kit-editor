@@ -16,15 +16,13 @@ const Container = ({ component, context, style }) => {
         ...style,
     };
 
-    // Determine alignment
     if (direction === "horizontal") {
         if (align === "center") containerStyle.justifyContent = "center";
         else if (align === "end") containerStyle.justifyContent = "flex-end";
-        // No need for "start" because it's the default behavior
     } else { // vertical
         if (align === "center") containerStyle.alignItems = "center";
         else if (align === "end") containerStyle.alignItems = "flex-end";
-        else if (align === "fill") containerStyle.alignItems = "stretch"; // to make children fill width
+        else if (align === "fill") containerStyle.alignItems = "stretch";
     }
 
     return (

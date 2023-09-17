@@ -7,7 +7,7 @@ const Notifications = ({ messages }) => {
         overflowY: 'auto',
         padding: '10px',
         borderTop: '1px solid #ddd',
-        borderRadius: '10px',  // Add rounded corners
+        borderRadius: '10px',
     };
 
     const formatTime = (timestamp) => {

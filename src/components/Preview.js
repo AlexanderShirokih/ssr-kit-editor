@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ComponentFactory from './core/ComponentFactory';
 import ComponentContext from './core/ComponentContext';
 import ErrorBoundary from './ErrorBoundary';
@@ -26,6 +26,12 @@ ComponentContext.prototype.evaluateActions = function (evalList) {
     });
 };
 
+const findScreen = (data, screenTag) => {
+    const screens = data.screens || [];
+    const actualTag = (screenTag || data.initialScreen);
+    return screens.find((s) => s.tag && s.tag === actualTag);
+};
+
 function Preview({ data, notifications, device }) {
     const deviceStyle = {
         width: `${device.width}px`,
@@ -38,31 +44,54 @@ function Preview({ data, notifications, device }) {
         background: 'white',
     };
 
-    const [screenStack, setScreenStack] = useState([data.initialScreen || '']);
+    const [screenStack, setScreenStack] = useState({
+        backstack: [],
+        backStackChangeCallbacks: [],
+    });
 
-    const onBackStackChanged = (prev, current) => {
-        console.log(`backstack changed ${prev}; ${current}`);
-    };
+    const onBackStackChanged = useCallback((prev, current) => {
+        const prevScreen = findScreen(data, prev);
+        const newScreen = findScreen(data, current);
+        return {
+            prevTag: prev,
+            prevScreen: prevScreen,
+            currentTag: current,
+            currentScreen: newScreen,
+        };
+    }, [data]);
 
-    const updateBackStack = useCallback((newBackStack) => {
-        const currentBackStack = screenStack;
-
-        newBackStack = typeof newBackStack === 'function' ? newBackStack(screenStack) : newBackStack;
-
-        const oldTopmostScreen = currentBackStack.slice(-1);
-        const newTopmostScreen = newBackStack.slice(-1);
-
-        if (oldTopmostScreen !== newTopmostScreen) {
-            onBackStackChanged(oldTopmostScreen, newTopmostScreen);
-        }
-
-        setScreenStack(newBackStack);
+    const setBackStackChangeListener = useCallback((callback) => {
+        setScreenStack({
+            backstack: screenStack.backstack,
+            backStackChangeCallbacks: [callback],
+        });
     }, [screenStack]);
 
-    const componentFactory = useMemo(() => new ComponentFactory(), []);
+    const updateBackStack = useCallback((newBackStack) => {
+        const currentBackStack = screenStack.backstack;
+
+        newBackStack = typeof newBackStack === 'function' ? newBackStack(currentBackStack) : newBackStack;
+
+        const oldTopmostScreen = currentBackStack.slice(-1).toString();
+        const newTopmostScreen = newBackStack.slice(-1).toString();
+
+        if (oldTopmostScreen !== newTopmostScreen) {
+            const stackChangeResult = onBackStackChanged(oldTopmostScreen, newTopmostScreen);
+            screenStack.backStackChangeCallbacks.forEach((callback) => {
+                callback(stackChangeResult);
+            });
+        }
+
+        setScreenStack({
+            backstack: newBackStack,
+            backStackChangeCallbacks: screenStack.backStackChangeCallbacks,
+        });
+
+    }, [screenStack, onBackStackChanged]);
+
     const componentContext = useMemo(() => {
         const context = new ComponentContext(
-            componentFactory,
+            new ComponentFactory(),
             createActionResolver({
                 notifications: notifications,
                 navigateToScreen: (screenName) => {
@@ -79,7 +108,33 @@ function Preview({ data, notifications, device }) {
         );
 
         return context;
-    }, [componentFactory, notifications, updateBackStack]);
+    }, [notifications, updateBackStack]);
+
+    useEffect(() => {
+        const callDisappearCallbacks = (screen) => {
+            screen.disappearActions && componentContext.evaluateActions(screen.disappearActions);
+        };
+        const callAppearCallbacks = (screen) => {
+            screen.appearActions && componentContext.evaluateActions(screen.appearActions)
+        };
+
+        setBackStackChangeListener((backStackChange) => {
+            if (backStackChange.prevScreen) {
+                callDisappearCallbacks(backStackChange.prevScreen);
+            }
+
+            if (backStackChange.currentScreen) {
+                callAppearCallbacks(backStackChange.currentScreen);
+            }
+        });
+
+        console.log("Initial: ");
+        console.log(data.initialScreen);
+       
+        const initialScreen = findScreen(data, data.initialScreen);
+        initialScreen && callAppearCallbacks(initialScreen);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     ComponentContext.prototype.render = function (component) {
         return this.componentFactory.createComponent(component.type, {
@@ -91,8 +146,9 @@ function Preview({ data, notifications, device }) {
     const renderFlow = useCallback((flow) => {
         let initialScreen = flow.initialScreen;
         let screens = flow.screens || [];
-        let currentScreen = screenStack.length > 0 ? screenStack[screenStack.length - 1] : initialScreen;
-        let screen = screens.find((screen) => screen.tag === currentScreen);
+        let backStack = screenStack.backstack;
+        let currentScreen = backStack.length > 0 ? backStack[backStack.length - 1] : initialScreen;
+        let screen = findScreen(flow, currentScreen);
 
         const goToStart = () => {
             updateBackStack([initialScreen]);

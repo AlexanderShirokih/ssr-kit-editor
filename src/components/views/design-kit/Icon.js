@@ -4,8 +4,15 @@ const iconsContext = require.context('../../../assets/icons', false, /\.svg$/);
 
 const Icon = ({ component, context }) => {
     const { name, alt } = component;
-    let svgModule = iconsContext(`./${name}.svg`);
-    const src = svgModule.default || svgModule;
+
+    let src;
+
+    try {
+        let svgModule = iconsContext(`./${name}.svg`);
+        src = svgModule.default || svgModule;
+    } catch (e) {
+        console.log(e);
+    }
 
     return (
         <img src={src} alt={alt} />

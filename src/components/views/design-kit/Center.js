@@ -13,7 +13,7 @@ const Center = ({ component, context }) => {
 
     return (
         <div style={centerStyle}>
-            {context.render(content)}
+            {content && context.render(content)}
         </div>
     );
 };
