@@ -3,6 +3,7 @@ import ActionResolver from "./ActionResolver";
 function createActionResolver({ notifications, navigateToScreen, pushScreen }) {
     const resolver = new ActionResolver();
     resolver.registerResolver('analytics', analyticsResolver(notifications))
+    resolver.registerResolver('deeplink', deeplinkResolver(notifications))
     resolver.registerResolver('navigate', navigationResolver(navigateToScreen))
     resolver.registerResolver('push', pushResolver(pushScreen))
 
@@ -32,6 +33,19 @@ function analyticsResolver(notifications) {
         notifications.addNotification(
             'Метрика',
             `Отправка события метрики "${eventName}; параметры: ${JSON.stringify(eventParams)}"`
+        );
+    };
+}
+
+function deeplinkResolver(notifications) {
+    return (params) => {
+        const deeplinkTag = params['default'];
+        delete params['default'];
+        const deeplinkParams = params;
+        
+        notifications.addNotification(
+            'Диплинк',
+            `Переход на диплинк "${deeplinkTag}; параметры: ${JSON.stringify(deeplinkParams)}"`
         );
     };
 }

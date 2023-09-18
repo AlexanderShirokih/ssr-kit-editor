@@ -3,7 +3,9 @@ import Container from './Container';
 
 const BottomControl = ({ component, context }) => {
     const style = {
-        paddingBottom: '16px'
+        paddingBottom: '16px',
+        paddingLeft: '16px',
+        paddingRight: '16px'
     };
 
     const containerComponent = {

@@ -11,7 +11,6 @@ const Container = ({ component, context, style }) => {
     const containerStyle = {
         display: 'flex',
         flexDirection: direction === "horizontal" ? 'row' : 'column',
-        width: '100%',
         gap: `${spacing}px`,
         ...style,
     };
