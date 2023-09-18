@@ -32,7 +32,7 @@ function analyticsResolver(notifications) {
         
         notifications.addNotification(
             'Метрика',
-            `Отправка события метрики "${eventName}; параметры: ${JSON.stringify(eventParams)}"`
+            `Отправка события метрики "${eventName}", параметры: ${JSON.stringify(eventParams)}"`
         );
     };
 }
@@ -45,7 +45,7 @@ function deeplinkResolver(notifications) {
         
         notifications.addNotification(
             'Диплинк',
-            `Переход на диплинк "${deeplinkTag}; параметры: ${JSON.stringify(deeplinkParams)}"`
+            `Переход на диплинк "${deeplinkTag}", параметры: ${JSON.stringify(deeplinkParams)}"`
         );
     };
 }

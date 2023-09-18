@@ -21,7 +21,43 @@ const sampleData = {
             ]
           }
         ]
-      }
+      },
+      body: [
+        {
+          type: "Card",
+          content: {
+            type: "Container",
+            content: [
+              {
+                type: "Text",
+                style: "h3",
+                content: "Автонакопление"
+              },
+              {
+                type: "Spacer",
+                spacing: 4
+              },
+              {
+                type: "Text",
+                color: "#8B97A3",
+                content: "14 покупок на сумму 45 876.90 ₽"
+              },
+              {
+                type: "Spacer",
+                spacing: 20
+              },
+              {
+                type: "Button",
+                style: "secondary2",
+                content: "Подключить",
+                tapActions: [
+                  "deeplink(tut_budet_deeplink)"
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       type: "RootView",
