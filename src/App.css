@@ -50,7 +50,6 @@
   user-select: none;
   display: flex;
   max-width: 360px;
-  padding: 0px 16px;
   flex-direction: column;
   align-items: flex-start;
   cursor: pointer;
@@ -73,6 +72,11 @@
   background: var(--android-colors-text-blue, #00AEC7);
 }
 
+.button .buttonContainerSecondary2 {
+  border-radius: 12px;
+  background: var(--android-colors-button-light-grey, #F2F2F2);
+}
+
 .button .buttonContainerText {
   border-radius: 12px;
   background: #FFFFFF;
@@ -80,6 +84,10 @@
 
 .button:active .buttonContainerPrimary {
   background-color: #0096AC;
+}
+
+.button:active .buttonContainerSecondary2 {
+  background: var(--android-colors-button-dark-grey, #E6EAED);
 }
 
 .button:active .buttonContainerText {
@@ -102,5 +110,8 @@
 
 .button .buttonContentText {
   color: var(--android-colors-text-blue, #00AEC7);
-  ;
+}
+
+.button .buttonContentSecondary2 {
+  color: var(--android-colors-light-text-blue, var(--android-colors-text-blue, #00AEC7));
 }

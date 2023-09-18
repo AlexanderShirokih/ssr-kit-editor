@@ -9,6 +9,7 @@ import Text from "../views/design-kit/Text";
 import TopBar from "../views/design-kit/TopBar";
 import Icon from "../views/design-kit/Icon";
 import Center from "../views/design-kit/Center";
+import Card from "../views/design-kit/Card";
 
 const COMPONENT_MAP = {
     'RootView': RootView,
@@ -21,6 +22,7 @@ const COMPONENT_MAP = {
     'Image': ImageView,
     'Spacer': Spacer,
     'Icon': Icon,
+    'Card': Card,
 };
 
 class ComponentFactory {

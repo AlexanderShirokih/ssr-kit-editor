@@ -1,5 +1,7 @@
 import React from 'react';
 
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
 const Button = ({ component, context }) => {
     const { content, style, tapActions = [] } = component;
 
@@ -9,7 +11,7 @@ const Button = ({ component, context }) => {
         });
     };
 
-    const classPostfix = style === 'primary' ? "Primary" : "Text";
+    const classPostfix = capitalize(style);
 
     return (
         <div className='button' onClick={onClick}>
