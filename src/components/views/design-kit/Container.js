@@ -1,6 +1,12 @@
 import React from "react";
 
-const Container = ({ component, context, style }) => {
+const Container = ({ component, context }) => {
+    return (
+        <ContainerWithStyle component={component} context={context} />
+    );
+};
+
+export const ContainerWithStyle = ({ component, context, style = {} }) => {
     const {
         content,
         spacing = 0,

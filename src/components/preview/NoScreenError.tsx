@@ -1,7 +1,13 @@
 import React from 'react';
 
-const NoScreenError = ({ currentScreen, screens, goToStart }) => {
-    const containerStyle = {
+interface Props {
+  currentScreen: string | null;
+  screens: string[];
+  goToStart: () => void;
+}
+
+const NoScreenError: React.FC<Props> = ({ currentScreen, screens, goToStart }) => {
+    const containerStyle: React.CSSProperties = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -9,7 +15,7 @@ const NoScreenError = ({ currentScreen, screens, goToStart }) => {
         height: '100%',
         textAlign: 'center'
     };
-
+    
     return (
         <div style={containerStyle}>
             <h1>Экран не найден.</h1>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from './Container';
+import { ContainerWithStyle } from './Container';
 
 const BottomControl = ({ component, context }) => {
     const style = {
@@ -14,7 +14,7 @@ const BottomControl = ({ component, context }) => {
         content: component.content,
     };
 
-    return <Container
+    return <ContainerWithStyle
         component={containerComponent}
         context={context}
         style={style}
