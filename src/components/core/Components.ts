@@ -14,6 +14,38 @@ export function isRootView(component: GenericComponent): component is RootViewCo
     return component.type === 'RootView';
 }
 
+export type TopBarComponent = GenericComponent & {
+    type: 'TopBar';
+    title?: string;
+}
+
+export function isTopBar(component: GenericComponent): component is TopBarComponent {
+    return component.type === 'TopBar';
+}
+
+export type TextComponent = GenericComponent & {
+    type: 'Text';
+    style?: string;
+    color?: string;
+    content?: string;
+}
+
+export function isText(component: GenericComponent): component is TextComponent {
+    return component.type === 'Text';
+}
+
+export type ButtonComponent = GenericComponent & {
+    type: 'Button';
+    content?: string;
+    style?: string;
+    tapActions?: ActionsSet;
+}
+
+export function isButton(component: GenericComponent): component is ButtonComponent {
+    return component.type === 'Button';
+}
+
+
 export type ActionsSet = string[]
 
 export interface ScreensSet {

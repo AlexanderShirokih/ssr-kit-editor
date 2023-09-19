@@ -12,34 +12,40 @@ import TopBar from "../views/design-kit/TopBar";
 import Icon from "../views/design-kit/Icon";
 import Center from "../views/design-kit/Center";
 import Card from "../views/design-kit/Card";
-import { ComponentInput } from './ComponentInput';
+import { ComponentInput, ReactComponentWithInput } from './ComponentInput';
+import { GenericComponent, isButton, isRootView, isText, isTopBar } from './Components';
 
-interface ReactComponentWithInput extends React.FC<ComponentInput> {}  // Define the constraint
-
-const COMPONENT_MAP: Record<string, ReactComponentWithInput> = {
-  'RootView': RootView,
-  'TopBar': TopBar,
-  'Container': Container,
-  'Center': Center,
-  'BottomControl': BottomControl,
-  'Button': Button,
-  'Text': Text,
-  'Image': ImageView,
-  'Spacer': Spacer,
-  'Icon': Icon,
-  'Card': Card,
+type ComponentBinding = {
+  component: ReactComponentWithInput,
+  matches: (component: GenericComponent) => boolean
 };
 
-export type ComponentTypeMap = typeof COMPONENT_MAP;
+const byType = (type: string) => ((component: GenericComponent) => component.type === type);
+
+const COMPONENT_BINDINGS: ComponentBinding[] = [
+  { component: RootView, matches: isRootView },
+  { component: TopBar as ReactComponentWithInput, matches: isTopBar },
+  { component: Container, matches: byType("Container") },
+  { component: Center, matches: byType("Center") },
+  { component: BottomControl, matches: byType("BottomControl") },
+  { component: Button as ReactComponentWithInput, matches: isButton },
+  { component: Text as ReactComponentWithInput, matches: isText },
+  { component: ImageView, matches: byType("Image") },
+  { component: Spacer, matches: byType("Spacer") },
+  { component: Icon, matches: byType("Icon") },
+  { component: Card, matches: byType("Card") },
+];
 
 class ComponentFactory {
   createComponent(type: string, props: ComponentInput): JSX.Element {
-    const Component = COMPONENT_MAP[type]; // type error
-  
-    if (Component) {
-      return <Component { ...props } />;
+    const binding = COMPONENT_BINDINGS.find(b => b.matches(props.component));
+
+    if (binding) {
+      const Component = binding.component;
+      return <Component {...props} />;
     }
-    return <StubComponent type={ type } />;
+
+    return <StubComponent type={type} />;
   }
 }
 

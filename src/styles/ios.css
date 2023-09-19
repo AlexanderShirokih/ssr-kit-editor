@@ -1,0 +1,168 @@
+:root {
+    --light-theme-navbar-main-button: #00A897;
+    --light-theme-text-main: #333E48;
+    --light-theme-buttons-primary: #003B4B;
+    --light-theme-buttons-primary-title: #FFF;
+    --light-theme-buttons-secondary-border: #003B4B;
+    --light-theme-buttons-secondary-title: #003B4B;
+    --light-theme-buttons-pressed: #00323F;
+    --light-theme-buttons-new-default: #F9F9F9;
+    --light-theme-buttons-new-pressed: #F1F5F4;
+    --light-theme-text-accent: #00A897;
+}
+
+/* Native/Navigation text */
+.iosNavigationText {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+}
+
+/* Header/H1 – Header 1; */
+.iosTextH1 {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 40px;
+    letter-spacing: 0em;
+}
+
+/* Header/H3 – Header 3 */
+.iosTextH2 {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+}
+
+/* Header/H3 – Header 3 */
+.iosTextH3 {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+}
+
+/* Header/H4 – Header 4 */
+.iosTextH4 {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+}
+
+/* Body/b1 – Text Medium 16 */
+.iosBody1 {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+/* Body/b3 – Text Medium 14 */
+.iosBody3 {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+/* Buttons/Button */
+.iosButtonText {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.iosTopBar {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding-top: 12px;
+    padding-left: 8px;
+}
+
+.iosTopBarHeader {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.iosTopBarHeader span {
+    padding: 10px 0px;
+    color: var(--light-theme-navbar-main-button);
+}
+
+.iosTopBarBody {
+    width: 100%;
+    padding: 0px 16px 7px 16px;
+}
+
+.iosTopBarBody {
+    color: var(--light-theme-text-main);
+}
+
+.iosButton {
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 1.0s;
+}
+
+.iosButtonPrimary {
+    padding: 10px 20px;
+    gap: 10px;
+    border-radius: 22px;
+    background-color: var(--light-theme-buttons-primary);
+}
+
+.iosButtonPrimary span {
+    color: var(--light-theme-buttons-primary-title);
+    text-align: center;
+}
+
+.iosButtonPrimary:active {
+    background-color: var(--light-theme-buttons-pressed);
+}
+
+.iosButtonSecondary {
+    padding: 10px 20px;
+    gap: 10px;
+    border-radius: 22px;
+    border: 1px solid var(--light-theme-buttons-secondary-border);
+}
+
+.iosButtonSecondary span {
+    color: var(--light-theme-buttons-secondary-title, #003B4B);
+    text-align: center;
+}
+
+.iosButtonSecondary2 {
+    padding: 10px 20px;
+    gap: 10px;
+    border-radius: 22px;
+    background-color: var(--light-theme-buttons-new-default);
+}
+
+.iosButtonSecondary2:active {
+    background-color: var(--light-theme-buttons-new-pressed);
+}
+
+.iosButtonSecondary2 span {
+    color: var(--light-theme-text-accent);
+}

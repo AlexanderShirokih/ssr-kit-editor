@@ -14,9 +14,18 @@ const sampleData = {
           {
             type: "Button",
             style: "primary",
-            content: "Далее",
+            content: "Оформить eSIM",
             tapActions: [
               "analytics(tap_button_next)",
+              "push(second)"
+            ]
+          },
+          {
+            type: "Button",
+            style: "secaondary",
+            content: "Мои eSIM",
+            tapActions: [
+              "analytics(tap_button_secondary)",
               "push(second)"
             ]
           }

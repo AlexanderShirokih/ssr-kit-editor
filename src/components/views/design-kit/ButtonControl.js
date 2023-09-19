@@ -1,16 +1,33 @@
 import React from 'react';
 import { ContainerWithStyle } from './Container';
+import { DeviceType } from '../../core/DeviceType';
 
 const BottomControl = ({ component, context }) => {
-    const style = {
-        paddingBottom: '16px',
-        paddingLeft: '16px',
-        paddingRight: '16px'
-    };
+    let style;
+    let spacing;
+    switch (context.getDevice()) {
+        case DeviceType.IOS:
+            style = {
+                paddingBottom: '20px',
+                paddingLeft: '16px',
+                paddingRight: '16px'
+            };
+            spacing = 16;
+            break;
+        case DeviceType.ANDROID:
+        default:
+            style = {
+                paddingBottom: '16px',
+                paddingLeft: '16px',
+                paddingRight: '16px'
+            };
+            spacing = 4;
+            break;
+    }
 
     const containerComponent = {
         align: "fill",
-        spacing: 4,
+        spacing: spacing,
         content: component.content,
     };
 
