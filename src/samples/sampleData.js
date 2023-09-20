@@ -22,7 +22,7 @@ const sampleData = {
           },
           {
             type: "Button",
-            style: "secaondary",
+            style: "text",
             content: "Мои eSIM",
             tapActions: [
               "analytics(tap_button_secondary)",

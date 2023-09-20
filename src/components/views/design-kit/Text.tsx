@@ -9,31 +9,31 @@ type DeviceTextStyleMap = { android: string, ios: string }
 
 const STYLES: Record<string, DeviceTextStyleMap> = {
     h1: {
-        android: 'h1',
+        android: 'androidTextH1',
         ios: 'iosTextH1'
     },
     h2: {
-        android: 'h2',
+        android: 'androidTextH2',
         ios: 'iosTextH2'
     },
     h3: {
-        android: 'h3',
+        android: 'androidTextH3',
         ios: 'iosTextH3'
     },
     h4: {
-        android: 'h4',
+        android: 'androidTextH4',
         ios: 'iosTextH4'
     },
     body1: {
-        android: 'body1',
+        android: 'androidTextBody1',
         ios: 'iosBody1'
     },
     body2: {
-        android: 'body2',
+        android: 'androidTextBody2',
         ios: 'iosBody3'
     },
     body3: {
-        android: 'body3',
+        android: 'androidTextBody3',
         ios: 'iosBody3'
     }
 };
@@ -52,6 +52,9 @@ const Text: ReactComponentWithInput<TextComponent> = ({ component, context }) =>
             className = baseStyle.ios;
             break;
     }
+
+    console.log("Applying styles:");
+    console.log(className);
 
     return (
         <div className={className} style={{ color: color || undefined }}>{content}</div>

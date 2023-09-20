@@ -76,7 +76,7 @@
 }
 
 /* Buttons/Button */
-.iosButtonText {
+.iosButtons {
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     font-size: 16px;
     font-style: normal;
@@ -140,14 +140,14 @@
     background-color: var(--light-theme-buttons-pressed);
 }
 
-.iosButtonSecondary {
+.iosButtonText {
     padding: 10px 20px;
     gap: 10px;
     border-radius: 22px;
     border: 1px solid var(--light-theme-buttons-secondary-border);
 }
 
-.iosButtonSecondary span {
+.iosButtonText span {
     color: var(--light-theme-buttons-secondary-title, #003B4B);
     text-align: center;
 }

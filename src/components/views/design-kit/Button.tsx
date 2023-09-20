@@ -31,7 +31,7 @@ const Button: ReactComponentWithInput<ButtonComponent> = ({ component, context }
         case DeviceType.IOS:
             return (
                 <div key={content} className={`iosButton iosButton${classPostfix}`} onClick={onClick}>
-                    <span className="iosButtonText">{content}</span>
+                    <span className="iosButtons">{content}</span>
                 </div>
             );
     }
