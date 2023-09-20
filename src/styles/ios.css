@@ -75,6 +75,16 @@
     line-height: 18px;
 }
 
+/*  Body/b4 – Text Regular 14*/
+.iosBody4 {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
 /* Buttons/Button */
 .iosButtons {
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;

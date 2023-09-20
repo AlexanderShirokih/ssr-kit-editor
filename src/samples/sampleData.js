@@ -128,9 +128,6 @@ const sampleData = {
       disappearActions: [
         "analytics(success_closed, key1=param1, key2=param2)"
       ],
-      appBar: {
-        type: "TopBar"
-      },
       bottomBar: {
         type: "BottomControl",
         content: [
@@ -152,28 +149,9 @@ const sampleData = {
         {
           type: "Center",
           content: {
-            type: "Container",
-            align: "center",
-            content: [
-              {
-                type: "Icon",
-                "name": "ic_success"
-              },
-              {
-                type: "Text",
-                style: "h3",
-                content: "Успешный успех!"
-              },
-              {
-                type: "Spacer",
-                spacing: 4
-              },
-              {
-                type: "Text",
-                style: "body2",
-                content: "Можно вернуться в начало флоу"
-              }
-            ]
+            type: "SuccessView",
+            title: "Успешный успех!",
+            subtitle: "Можно вернуться в начало флоу"
           }
         }
       ]

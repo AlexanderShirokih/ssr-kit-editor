@@ -14,6 +14,7 @@ import Center from "../views/design-kit/Center";
 import Card from "../views/design-kit/Card";
 import { ComponentInput, ReactComponentWithInput } from './ComponentInput';
 import { GenericComponent, isButton, isRootView, isText, isTopBar } from './Components';
+import SuccessView from '../views/design-kit/SuccessView';
 
 type ComponentBinding = {
   component: ReactComponentWithInput,
@@ -34,6 +35,7 @@ const COMPONENT_BINDINGS: ComponentBinding[] = [
   { component: Spacer, matches: byType("Spacer") },
   { component: Icon, matches: byType("Icon") },
   { component: Card, matches: byType("Card") },
+  { component: SuccessView, matches: byType("SuccessView") }
 ];
 
 class ComponentFactory {

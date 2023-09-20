@@ -35,6 +35,10 @@ const STYLES: Record<string, DeviceTextStyleMap> = {
     body3: {
         android: 'androidTextBody3',
         ios: 'iosBody3'
+    },
+    body4: {
+        android: 'androidTextBody2',
+        ios: 'iosBody4'
     }
 };
 
@@ -52,9 +56,6 @@ const Text: ReactComponentWithInput<TextComponent> = ({ component, context }) =>
             className = baseStyle.ios;
             break;
     }
-
-    console.log("Applying styles:");
-    console.log(className);
 
     return (
         <div className={className} style={{ color: color || undefined }}>{content}</div>
