@@ -13,9 +13,12 @@ const devices: Device[] = [
   { name: "iPhone (Light ☀️ )", width: 393, height: 852, appearance: DeviceType.IOS }
 ];
 
+const scales: number[] = [0.75, 0.9, 1.0, 1.25];
+
 const App: React.FC = () => {
   const [layoutData, setLayoutData] = useState<ScreensSet>(sampleData);
   const [selectedDevice, setSelectedDevice] = useState<Device>(devices[0]);
+  const [scale, setScale] = useState<number>(1.0);
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
 
   const notificationsController: NotificationsController = {
@@ -31,7 +34,15 @@ const App: React.FC = () => {
         <select value={selectedDevice.name} onChange={e => setSelectedDevice(devices.find(d => d.name === e.target.value)!)}>
           {devices.map(d => (<option key={d.name} value={d.name}>{d.name}</option>))}
         </select>
-        <Preview data={layoutData} device={selectedDevice} notifications={notificationsController} />
+        <select value={scale.toString()} onChange={s => setScale(parseFloat(s.target.value))}>
+          {
+            scales.map(s => {
+              return (<option key={s} value={s}>{(s * 100).toString()} %</option>);
+            })
+          }
+        </select>
+
+        <Preview data={layoutData} device={selectedDevice} scale={scale} notifications={notificationsController} />
         <Notifications messages={notifications} />
       </div>
     </div>

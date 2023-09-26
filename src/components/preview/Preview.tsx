@@ -18,12 +18,15 @@ interface PreviewProps {
     data: ScreensSet;
     notifications: NotificationsController;
     device: Device;
+    scale: number;
 }
 
 type SetScreenStack = string[] | ((prevStack: string[]) => string[])
 
-function Preview({ data, notifications, device }: PreviewProps) {
+function Preview({ data, notifications, device, scale = 1.0 }: PreviewProps) {
     const deviceStyle = {
+        transform: `scale(${scale})`,
+        transformOrigin: 'top',
         width: `${device.width}px`,
         height: `${device.height}px`,
         margin: '20px auto',
