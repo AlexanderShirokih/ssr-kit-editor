@@ -13,9 +13,10 @@ import Icon from "../views/design-kit/Icon";
 import Center from "../views/design-kit/Center";
 import Card from "../views/design-kit/Card";
 import { ComponentInput, ReactComponentWithInput } from './ComponentInput';
-import { GenericComponent, isButton, isRootView, isText, isTopBar } from './Components';
+import { GenericComponent, isButton, isCheckbox, isRootView, isText, isTopBar } from './Components';
 import SuccessView from '../views/design-kit/SuccessView';
 import Platform from '../views/design-kit/Platform';
+import Checkbox from '../views/design-kit/Checkbox';
 
 type ComponentBinding = {
   component: ReactComponentWithInput,
@@ -32,6 +33,7 @@ const COMPONENT_BINDINGS: ComponentBinding[] = [
   { component: BottomControl, matches: byType("BottomControl") },
   { component: Button as ReactComponentWithInput, matches: isButton },
   { component: Text as ReactComponentWithInput, matches: isText },
+  { component: Checkbox as ReactComponentWithInput, matches: isCheckbox },
   { component: ImageView, matches: byType("Image") },
   { component: Spacer, matches: byType("Spacer") },
   { component: Icon, matches: byType("Icon") },

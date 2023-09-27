@@ -45,6 +45,14 @@ export function isButton(component: GenericComponent): component is ButtonCompon
     return component.type === 'Button';
 }
 
+export type CheckboxComponent = GenericComponent & {
+    type: 'Checkbox';
+    required?: boolean;
+    default?: boolean;
+}
+export function isCheckbox(component: GenericComponent): component is CheckboxComponent {
+    return component.type === 'Checkbox';
+}
 
 export type ActionsSet = string[]
 
